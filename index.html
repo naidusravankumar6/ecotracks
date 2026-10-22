@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b6b50">
+    <meta name="description" content="EcoTrack environmental dashboard for weather, air quality, and eco-friendly tips.">
+
+    <title>EcoTrack | Environmental Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="location.js" defer></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="brand" href="#" aria-label="EcoTrack home">
+            <span class="brand-icon">🌿</span>
+            <span>EcoTrack</span>
+        </a>
+
+        <nav aria-label="Main navigation">
+            <a href="#home">Home</a>
+            <a href="#environment">Environment</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="eyebrow">YOUR PLANET, YOUR RESPONSIBILITY</span>
+                <h1>Understand your environment.<br>
+                    <span>Protect your future.</span>
+                </h1>
+                <p>
+                    Explore weather and air-quality information for locations
+                    around the world and discover simple ways to help nature.
+                </p>
+            </div>
+
+            <div class="hero-symbol" aria-hidden="true">🌍</div>
+        </section>
+
+        <section class="location-section" id="environment">
+            <div class="section-heading">
+                <span class="eyebrow">LOCATION EXPLORER</span>
+                <h2>Environmental Dashboard</h2>
+                <p>Search for a city or use your device's location.</p>
+            </div>
+
+            <form class="search-panel" id="ecoSearchForm">
+                <label for="locationInput">Enter a city or place</label>
+
+                <div class="search-controls">
+                    <input
+                        type="search"
+                        id="locationInput"
+                        placeholder="e.g. Srikakulam, India"
+                        autocomplete="off"
+                        required
+                    >
+
+                    <button type="submit" id="searchLocationBtn">
+                        Search Location
+                    </button>
+
+                    <button
+                        type="button"
+                        id="currentLocationBtn"
+                        class="secondary-button"
+                    >
+                        📍 Use My Location
+                    </button>
+                </div>
+
+                <p
+                    id="locationMessage"
+                    class="status-message"
+                    role="status"
+                    aria-live="polite"
+                >Search for a location to view environmental data.</p>
+            </form>
+
+            <section
+                id="locationDetails"
+                class="dashboard"
+                aria-label="Location environmental information"
+                aria-live="polite"
+                hidden
+            >
+                <div class="location-banner">
+                    <div>
+                        <span class="eyebrow">SELECTED LOCATION</span>
+                        <h2 id="locationName">Location</h2>
+                        <p id="locationCoordinates">Coordinates will appear here</p>
+                    </div>
+
+                    <span class="location-icon" aria-hidden="true">📍</span>
+                </div>
+
+                <div class="environment-grid">
+                    <article class="environment-card weather-card">
+                        <div class="card-heading">
+                            <span class="card-icon">🌡️</span>
+                            <span class="card-label">Current Temperature</span>
+                        </div>
+                        <p class="metric" id="locationTemperature">-- °C</p>
+                        <p class="card-description">Current modelled temperature</p>
+                    </article>
+
+                    <article class="environment-card humidity-card">
+                        <div class="card-heading">
+                            <span class="card-icon">💧</span>
+                            <span class="card-label">Relative Humidity</span>
+                        </div>
+                        <p class="metric" id="locationHumidity">-- %</p>
+                        <p class="card-description">Moisture in the air</p>
+                    </article>
+
+                    <article class="environment-card air-card">
+                        <div class="card-heading">
+                            <span class="card-icon">🌬️</span>
+                            <span class="card-label">Air Quality Index</span>
+                        </div>
+                        <p class="metric" id="locationAQI">--</p>
+                        <p class="card-description" id="aqiDescription">
+                            US AQI · Waiting for data
+                        </p>
+                    </article>
+                </div>
+
+                <section class="pollutants-section">
+                    <h3>Air Pollution Details</h3>
+                    <p class="muted">
+                        Estimated pollutant concentrations from the air-quality model.
+                    </p>
+
+                    <div class="pollutants-grid">
+                        <div class="pollutant-item">
+                            <span>PM2.5</span>
+                            <strong id="locationPM25">--</strong>
+                            <small>µg/m³</small>
+                        </div>
+
+                        <div class="pollutant-item">
+                            <span>PM10</span>
+                            <strong id="locationPM10">--</strong>
+                            <small>µg/m³</small>
+                        </div>
+
+                        <div class="pollutant-item">
+                            <span>Wind Speed</span>
+                            <strong id="locationWind">--</strong>
+                            <small>km/h</small>
+                        </div>
+
+                        <div class="pollutant-item">
+                            <span>Feels Like</span>
+                            <strong id="locationFeelsLike">--</strong>
+                            <small>°C</small>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="eco-tip-panel">
+                    <div class="tip-icon" aria-hidden="true">🌱</div>
+                    <div>
+                        <h3>Eco-Friendly Tip</h3>
+                        <p id="locationEcoTip">
+                            Search for a location to receive an environmental tip.
+                        </p>
+                    </div>
+                </section>
+
+                <p class="data-note">
+                    Data is provided by Open-Meteo. Weather and air-quality values
+                    are model estimates and may not represent a nearby monitoring station.
+                    AQI is the US Air Quality Index.
+                </p>
+            </section>
+        </section>
+
+        <section class="about-section" id="about">
+            <span class="eyebrow">SMALL ACTIONS, BIG IMPACT</span>
+            <h2>Make choices that help the planet</h2>
+
+            <div class="about-grid">
+                <article>
+                    <span aria-hidden="true">🌳</span>
+                    <h3>Protect Green Spaces</h3>
+                    <p>Plant trees and care for local plants and natural habitats.</p>
+                </article>
+
+                <article>
+                    <span aria-hidden="true">🚲</span>
+                    <h3>Travel Smarter</h3>
+                    <p>Walk, cycle or share transport when practical.</p>
+                </article>
+
+                <article>
+                    <span aria-hidden="true">♻️</span>
+                    <h3>Reduce Waste</h3>
+                    <p>Reuse useful items and sort recyclable materials properly.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>🌿 EcoTrack — Learn about your environment, one location at a time.</p>
+        <p>Environmental data: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a></p>
+    </footer>
+</body>
+</html>
